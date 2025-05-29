@@ -1,4 +1,4 @@
-# Flutter Riverpod Clean Architecture Course - Node.js API 개발 컨테이너
+# Flutter Riverpod Clean Architecture Course 클론 코딩 - Node.js API 개발 컨테이너
 
 이 저장소는 DBestech의 [Flutter Riverpod Clean Architecture Course](https://www.dbestech.com/tutorials/riverpod-clean-architecture-course-with-source-code)에서 사용되는 **Node.js API를 위한 개발 컨테이너 환경**입니다.  
 
