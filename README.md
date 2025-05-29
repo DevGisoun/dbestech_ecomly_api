@@ -2,7 +2,7 @@
 
 이 저장소는 DBestech의 [Flutter Riverpod Clean Architecture Course](https://www.dbestech.com/tutorials/riverpod-clean-architecture-course-with-source-code)에서 사용되는 **Node.js API를 위한 개발 컨테이너 환경**입니다.  
 
-개발 컨테이너 환경 구축을 위해 사용된 이미지는 Microsoft의 [Node.js & Typescript Development Container Images](https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/typescript-node/tags)를 사용하였습니다.
+개발 컨테이너 환경 구축을 위해 사용된 이미지는 Microsoft의 [Node.js & Typescript Development Container Images](https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/typescript-node/tags)를 사용하였습니다.  
 
 ## 기술 스택
 
