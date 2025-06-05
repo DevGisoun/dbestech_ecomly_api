@@ -1,0 +1,32 @@
+{
+  "name": "dbestech_ecomly_api",
+  "version": "1.0.0",
+  "description": "이 저장소는 DBestech의 [Flutter Riverpod Clean Architecture Course](https://www.dbestech.com/tutorials/riverpod-clean-architecture-course-with-source-code)에서 사용되는 **Node.js API를 위한 개발 컨테이너 환경**입니다.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevGisoun/dbestech_ecomly_api.git"
+  },
+  "author": "DevGisoun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevGisoun/dbestech_ecomly_api/issues"
+  },
+  "homepage": "https://github.com/DevGisoun/dbestech_ecomly_api#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.15.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.10"
+  }
+}

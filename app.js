@@ -1,0 +1,36 @@
+const bodyParser = require('body-parser');
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const mongoose = require('mongoose');
+require('dotenv/config');
+
+const app = express();
+const env = process.env;
+const API = env.API_URL;
+
+app.use(bodyParser.json());
+app.use(morgan('tiny'));
+app.use(cors());
+app.options(/.*/, cors());
+
+const authRouter = require('./routes/auth');
+app.use(`${API}/`, authRouter);
+
+const host = env.HOST;
+const port = env.PORT;
+
+
+// Connect to MongoDB
+mongoose
+    .connect(env.MONGODB_CONNECTION_STRING)
+    .then(async () => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((e) => {
+        console.error(e);
+    });
+
+app.listen(port, host, () => {
+    console.log(`Server running at http://${host}:${port}`);
+});

@@ -4,7 +4,7 @@
 
 개발 컨테이너 환경 구축을 위해 사용된 이미지는 Microsoft의 [Node.js & Typescript Development Container Images](https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/typescript-node/tags)를 사용하였습니다.  
 
-## 기술 스택
+## 주요 기술 스택
 
 * **Node.js:** v22.15.0
 * **npm:** v10.9.2
