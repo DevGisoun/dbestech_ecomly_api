@@ -19,6 +19,8 @@ router.post('/login', authController.login);
 
 router.post('/register', validateUser, authController.register);
 
+router.get('/verify-token', authController.forgotPassword);
+
 router.post('/forgot-password', authController.forgotPassword);
 
 router.post('/verify-otp', authController.verifyPasswordResetOTP);
