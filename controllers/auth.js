@@ -164,5 +164,35 @@ exports.verifyPasswordResetOTP = async function (req, res) {
 };
 
 exports.resetPassword = async function (req, res) {
+    // validate the password
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const errorMessages = errors.array().map((error) => ({
+            field: error.path,
+            message: error.msg
+        }));
+        return res.status(400).json({ errors: errorMessages });
+    }
     
+    try {
+        const { email, newPassword } = req.body;
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ type: 'User Not Found', message: 'User not found.' });
+        }
+
+        if (user.resetPasswordOtp !== 1) {
+            return res.status(401).json({ message: 'Confirm OTP before resetting password.' });
+        }
+
+        user.passwordHash = bcrypt.hashSync(newPassword, 8);
+        user.resetPasswordOtp = undefined;
+        await user.save();
+
+        return res.json({ message: 'Password reset successfully.' });
+    } catch (e) {
+        console.error(e);
+        return res.status(500).json({ type: e.name, message: e.message });
+    }
 };
