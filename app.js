@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv/config');
+const authJwt = require('./middlewares/jwt');
+const errorHandler = require('./middlewares/error_handler');
 
 const app = express();
 const env = process.env;
@@ -13,6 +15,8 @@ app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(cors());
 app.options(/.*/, cors());
+app.use(authJwt());
+app.use(errorHandler);
 
 const authRouter = require('./routes/auth');
 app.use(`${API}/`, authRouter);
