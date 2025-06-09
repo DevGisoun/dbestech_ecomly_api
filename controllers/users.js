@@ -18,7 +18,7 @@ exports.getUsers = async (_, res) => {
 exports.getUserById = async (req, res) => {
     try {
         // passwordHash, resetPasswordOtp, resetPasswordOtpExpires 필드를 제외한 단일 User 객체 조회.
-        const user = await User.findById(req.params.id).select('-passwordHash -resetPasswordOtp -resetPasswordOtpExpires');
+        const user = await User.findById(req.params.id).select('-passwordHash -resetPasswordOtp -resetPasswordOtpExpires -cart');
         if (!user) {
             return res.status(404).json({ message: 'User Not Found' });
         }
@@ -43,6 +43,7 @@ exports.updateUser = async (req, res) => {
         }
 
         user.passwordHash = undefined;
+        user.cart = undefined;
 
         return res.json(user);
     } catch (e) {
