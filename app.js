@@ -25,6 +25,7 @@ const adminRouter = require('./routes/admin');
 app.use(`${API}/`, authRouter);
 app.use(`${API}/users`, usersRouter);
 app.use(`${API}/admin`, adminRouter);
+app.use(`/public`, express.static(`${__dirname}/public`));
 
 const host = env.HOST;
 const port = env.PORT;
