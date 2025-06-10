@@ -4,6 +4,7 @@ const router = express.Router();
 
 const usersController = require('../controllers/admin/users');
 const categoriesController = require('../controllers/admin/categories');
+const productsController = require('../controllers/admin/products');
 const ordersController = require('../controllers/admin/orders');
 
 // USERS
@@ -16,11 +17,12 @@ router.put('/categories/:id', categoriesController.editCategory);
 router.delete('/categories/:id', categoriesController.deleteCategory);
 
 // PRODUCTS
-// router.get('/products/count', adminController.getProductsCount);
-// router.post('/products', adminController.addProduct);
-// router.put('/products/:id', adminController.editProduct);
-// router.delete('/products/:id/images', adminController.deleteProductImages);
-// router.delete('/products/:id', adminController.deleteProduct);
+router.get('/products/count', productsController.getProductsCount);
+router.get('/products', productsController.getProducts);
+router.post('/products', productsController.addProduct);
+router.put('/products/:id', productsController.editProduct);
+router.delete('/products/:id/images', productsController.deleteProductImages);
+router.delete('/products/:id', productsController.deleteProduct);
 
 // ORDERS
 router.get('/orders', ordersController.getOrders);
