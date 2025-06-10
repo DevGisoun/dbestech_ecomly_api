@@ -1,7 +1,6 @@
 const { upload } = require('../../helpers/media_helper');
 const util = require('util');
 const { Category } = require('../../models/category');
-const { json } = require('body-parser');
 
 exports.addCategory = async function (req, res) {
     try {
