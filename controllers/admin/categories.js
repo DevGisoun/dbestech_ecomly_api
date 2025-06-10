@@ -1,6 +1,7 @@
 const { upload } = require('../../helpers/media_helper');
 const util = require('util');
 const { Category } = require('../../models/category');
+const { json } = require('body-parser');
 
 exports.addCategory = async function (req, res) {
     try {
@@ -34,6 +35,23 @@ exports.addCategory = async function (req, res) {
         if (!category) return res.status(500).json({ message: 'The category could not be created.' });
 
         return res.status(201).json(category);
+    } catch (e) {
+        console.error(e);
+        return res.status(500).json({ type: e.name, message: e.message });
+    }
+};
+
+exports.editCategory = async function (req, res) {
+    try {
+        const { name, icon, color } = req.body;
+        const category = await Category.findByIdAndUpdate(
+            req.params.id,
+            { name, icon, color },
+            { new: true }
+        );
+        if (!category) return res.status(404).json({ message: 'Category not found.' });
+
+        return res.json(category);
     } catch (e) {
         console.error(e);
         return res.status(500).json({ type: e.name, message: e.message });
