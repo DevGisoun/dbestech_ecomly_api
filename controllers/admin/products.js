@@ -6,7 +6,7 @@ const { MulterError } = require('multer');
 const { default: mongoose } = require('mongoose');
 const { Review } = require('../../models/review');
 
-exports.getProductsCount = async function (req, res) {
+exports.getProductsCount = async function (_, res) {
     try {
         const productCount = await Product.countDocuments();
         if (!productCount) return res.status(500).json({ message: 'Could not count products.' });
@@ -20,7 +20,23 @@ exports.getProductsCount = async function (req, res) {
 
 exports.getProducts = async function (req, res) {
     try {
-        //
+        const page = req.query.page || 1;
+        const pageSize = 10;
+
+        const products = await Product.find()
+            .select('-reviews -rating')
+            /**
+             * ex)  page: 1, pageSize: 10
+             *      (1 - 1) * 10 = 0 -> 1페이지의 경우 0개를 건너뛰고 처음부터 조회.
+             * ex)  page: 2, pageSize: 10
+             *      (2 - 1) * 10 = 10 -> 2페이지의 경우 10개를 건너뛰고 11번째부터 조회.
+             */
+            .skip((page - 1) * pageSize)
+            .limit(pageSize);
+        
+        if (!products) return res.status(404).json({ message: 'Products not found.' });
+
+        return res.json(products);
     } catch (e) {
         console.error(e);
         return res.status(500).json({ type: e.name, message: e.message });
@@ -243,7 +259,7 @@ exports.deleteProduct = async function (req, res) {
                 ...product.images,
                 product.image
             ],
-            ENOENT
+            'ENOENT'
         );
 
         await Review.deleteMany({ _id: { $in: product.reviews } });
