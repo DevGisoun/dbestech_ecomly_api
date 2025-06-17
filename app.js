@@ -21,15 +21,20 @@ app.use(errorHandler);
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const adminRouter = require('./routes/admin');
+const categoriesRouter = require('./routes/categories');
+const productsRouter = require('./routes/products');
 
 app.use(`${API}/`, authRouter);
 app.use(`${API}/users`, usersRouter);
 app.use(`${API}/admin`, adminRouter);
+app.use(`${API}/categories`, categoriesRouter);
+app.use(`${API}/products`, productsRouter);
 app.use(`/public`, express.static(`${__dirname}/public`));
+
+require('./helpers/cron_job');
 
 const host = env.HOST;
 const port = env.PORT;
-
 
 // Connect to MongoDB
 mongoose
