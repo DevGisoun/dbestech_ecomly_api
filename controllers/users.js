@@ -4,9 +4,7 @@ exports.getUsers = async (_, res) => {
     try {
         // 모든 User 객체의 name email id isAdmin 필드 조회.
         const users = await User.find().select('name email id isAdmin');
-        if (!users) {
-            return res.status(404).json({ message: 'Users Not Found' });
-        }
+        if (!users) return res.status(404).json({ message: 'Users Not Found' });
 
         return res.json(users);
     } catch (e) {
