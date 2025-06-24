@@ -12,6 +12,7 @@ const app = express();
 const env = process.env;
 const API = env.API_URL;
 
+// Middlewares
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(cors());
@@ -25,12 +26,15 @@ const usersRouter = require('./routes/users');
 const adminRouter = require('./routes/admin');
 const categoriesRouter = require('./routes/categories');
 const productsRouter = require('./routes/products');
+const checkoutRouter = require('./routes/checkout');
 
+// Routers
 app.use(`${API}/`, authRouter);
 app.use(`${API}/users`, usersRouter);
 app.use(`${API}/admin`, adminRouter);
 app.use(`${API}/categories`, categoriesRouter);
 app.use(`${API}/products`, productsRouter);
+app.use(`${API}/checkout`, checkoutRouter);
 app.use(`/public`, express.static(`${__dirname}/public`));
 
 require('./helpers/cron_job');
