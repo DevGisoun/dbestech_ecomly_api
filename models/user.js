@@ -4,6 +4,7 @@ const userSchema = Schema({
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, trim: true },
     passwordHash: { type: String, required: true },
+    paymentCustomerId: String,
     street: String,
     apartment: String,
     city: String,
